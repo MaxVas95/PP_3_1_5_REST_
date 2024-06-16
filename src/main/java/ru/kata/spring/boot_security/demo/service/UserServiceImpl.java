@@ -64,6 +64,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User existingUser = userRepository.findById(user.getId())
                 .orElseThrow(() -> new NoSuchUserException("User not found"));
 
+        existingUser.setFirstName(user.getFirstName() != null ? user.getFirstName() : existingUser.getFirstName());
+        existingUser.setLastName(user.getLastName() != null ? user.getLastName() : existingUser.getLastName());
+        existingUser.setAge(user.getAge() != 0 ? user.getAge() : existingUser.getAge());
+        existingUser.setUsername(user.getUsername() != null ? user.getUsername() : existingUser.getUsername()); // Assuming email is the same as username
         if (!user.getPassword().isEmpty()) {
             existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
