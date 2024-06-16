@@ -67,8 +67,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (!user.getPassword().isEmpty()) {
             existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-
-        // Обновляем роли пользователя
         existingUser.setRoles(user.getRoles().stream()
                 .map(role -> roleService.findRoleByRole(role.getRole()))
                 .collect(Collectors.toList()));

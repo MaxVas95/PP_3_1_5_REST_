@@ -45,7 +45,7 @@ public class AdminRestController {
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         if (user == null) {
-            throw new NoSuchUserException("Пользователь не найден");
+            throw new NoSuchUserException("User not found");
         }
         userService.edit(user);
         return ResponseEntity.ok(user);
